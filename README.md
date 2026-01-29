@@ -2,13 +2,26 @@
 
 Visual Yield for Urban Hygiene Analysis
 
+## Monorepo Structure
+
+This is a monorepo containing both frontend and backend workspaces:
+
+- **frontend/** - Next.js 16 application with TypeScript, Tailwind CSS, and Shadcn UI
+- **backend/** - Node.js/Express API server with TypeScript
+
 ## Tech Stack
 
+### Frontend
 - **Next.js 16** - React framework with App Router
 - **TypeScript** - Type-safe development
 - **Tailwind CSS 4** - Utility-first CSS framework
 - **Shadcn UI** - Re-usable components built with Radix UI
 - **ESLint** - Code linting and formatting
+
+### Backend
+- **Express** - Web framework
+- **TypeScript** - Type-safe development
+- **tsx** - TypeScript execution for development
 
 ## Getting Started
 
@@ -19,102 +32,143 @@ Visual Yield for Urban Hygiene Analysis
 
 ### Installation
 
+Install dependencies for all workspaces:
+
 ```bash
 npm install
 ```
 
 ### Development
 
-First, run the development server:
+Run both frontend and backend in development mode:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Or run them individually:
 
-You can start editing the page by modifying `src/app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Frontend only (http://localhost:3000)
+npm run dev:frontend
+
+# Backend only (http://localhost:3001)
+npm run dev:backend
+```
 
 ### Build
 
-Build the application for production:
+Build all workspaces:
 
 ```bash
 npm run build
 ```
 
+Or build individually:
+
+```bash
+npm run build:frontend
+npm run build:backend
+```
+
 ### Start Production Server
+
+Start all production servers:
 
 ```bash
 npm start
 ```
 
+Or start individually:
+
+```bash
+npm run start:frontend
+npm run start:backend
+```
+
 ### Lint
+
+Lint all workspaces:
 
 ```bash
 npm run lint
 ```
 
+Or lint individually:
+
+```bash
+npm run lint:frontend
+npm run lint:backend
+```
+
+### Clean
+
+Remove all node_modules and build artifacts:
+
+```bash
+npm run clean
+```
+
 ## Project Structure
 
 ```
-├── src/
-│   ├── app/              # App Router pages and layouts
-│   │   ├── layout.tsx    # Root layout
-│   │   ├── page.tsx      # Home page
-│   │   └── globals.css   # Global styles with Tailwind
-│   ├── components/       # React components
-│   │   └── ui/          # Shadcn UI components
-│   └── lib/             # Utility functions
-│       └── utils.ts     # Helper utilities (cn, etc.)
-├── public/              # Static assets
-├── components.json      # Shadcn UI configuration
-├── tsconfig.json        # TypeScript configuration
-└── package.json         # Project dependencies
+├── frontend/             # Next.js frontend application
+│   ├── src/
+│   │   ├── app/         # App Router pages and layouts
+│   │   ├── components/  # React components
+│   │   └── lib/         # Utility functions
+│   ├── public/          # Static assets
+│   └── package.json     # Frontend dependencies
+├── backend/             # Express backend API
+│   ├── src/
+│   │   └── index.ts     # Main server file
+│   └── package.json     # Backend dependencies
+├── package.json         # Root workspace configuration
+└── README.md           # This file
 ```
 
-## Adding Components
+## Workspaces
 
-This project uses Shadcn UI. To add new components:
+This project uses npm workspaces to manage the monorepo. Each workspace (frontend and backend) has its own `package.json` and can be developed independently.
+
+### Working with Workspaces
 
 ```bash
-npx shadcn@latest add button
-npx shadcn@latest add card
-# etc.
+# Install a package in frontend
+npm install <package> --workspace=frontend
+
+# Install a package in backend
+npm install <package> --workspace=backend
+
+# Run a script in a specific workspace
+npm run <script> --workspace=<workspace-name>
 ```
-
-Note: Due to network restrictions in some environments, you may need to manually add components by copying them from the [Shadcn UI documentation](https://ui.shadcn.com).
-
-## Best Practices
-
-- Use TypeScript for type safety
-- Follow the App Router conventions
-- Use Server Components by default
-- Add 'use client' only when necessary
-- Use Tailwind CSS for styling
-- Leverage Shadcn UI for consistent components
-- Keep components small and focused
 
 ## Learn More
 
-To learn more about the technologies used, check out the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Frontend
+- [Next.js Documentation](https://nextjs.org/docs)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
 - [Shadcn UI Documentation](https://ui.shadcn.com)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Backend
+- [Express Documentation](https://expressjs.com/)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
 
-## Deploy on Vercel
+## Deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Frontend
+The easiest way to deploy the Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
 
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Backend
+The backend can be deployed to any Node.js hosting platform like:
+- Heroku
+- Railway
+- Render
+- AWS
+- Google Cloud Platform
+- Azure
+
+Check out the respective platform documentation for deployment instructions.
+
 
