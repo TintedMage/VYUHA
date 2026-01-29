@@ -19,6 +19,6 @@
     "lint": "npm run lint --workspaces",
     "lint:frontend": "npm run lint --workspace=frontend",
     "lint:backend": "npm run lint --workspace=backend",
-    "clean": "rm -rf node_modules frontend/node_modules backend/node_modules frontend/.next backend/dist"
+    "clean": "node -e \"const fs = require('fs'); const path = require('path'); ['node_modules', 'frontend/node_modules', 'backend/node_modules', 'frontend/.next', 'backend/dist'].forEach(dir => { try { fs.rmSync(path.join(process.cwd(), dir), {recursive: true, force: true}); } catch(e) {} });\""
   }
 }
