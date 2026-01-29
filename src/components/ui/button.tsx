@@ -40,6 +40,13 @@ export interface ButtonProps
   asChild?: boolean
 }
 
+/**
+ * Button component
+ * 
+ * When using asChild prop, ensure the child element has appropriate
+ * accessibility attributes (e.g., role="button" for non-button elements)
+ */
+
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button"
